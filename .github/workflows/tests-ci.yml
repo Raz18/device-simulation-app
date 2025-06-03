@@ -33,16 +33,16 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pytest pytest-asyncio pytest-benchmark
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        pip install -r requirements.txt
+         
 
     - name: Run standard tests
       run: |
-        pytest tests/ -v --exclude-benchmark
+        pytest tests/ -v -s -m "not benchmark"
 
     - name: Run benchmark tests
       run: |
-        pytest tests/ -v -m benchmark --benchmark-disable
+        pytest tests/ -v -s -m benchmark --benchmark-disable
 
 env:
   APP_REDIS_HOST: localhost

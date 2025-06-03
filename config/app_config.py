@@ -40,7 +40,7 @@ class Settings(BaseSettings):
 
     model_config = SettingsConfigDict(
         env_prefix="APP_",  # Environment variable prefix
-        env_file=".env",  # Load from .env file
+        env_file=".env.example",  # Load from .env.example file
         env_file_encoding='utf-8',
         case_sensitive=True,  # For environment variable names (usually False is more common unless needed)
         extra='ignore'  # Ignore extra fields from env or data

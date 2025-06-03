@@ -84,7 +84,7 @@ The application is configured primarily through environment variables. A `.env` 
 Copy the `.env.example` file (if provided, otherwise create a new one) to `.env` in the project root:
 
 ```bash
-cp .env.example .env
+cp .env.example.example .env.example
 ```
 
 **Customize `.env`:**

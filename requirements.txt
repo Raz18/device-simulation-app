@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+redis
+pydantic
+pydantic-settings
+
+# For testing
+pytest
+pytest-asyncio
+pytest-benchmark
+pytest-html
+httpx
+# openapi-spec-validator # Optional: for deeper schema validation if desired

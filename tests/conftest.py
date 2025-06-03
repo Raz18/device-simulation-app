@@ -14,7 +14,6 @@ settings = get_app_settings()  # Get settings for test configuration
 @pytest.fixture(scope="session")
 def event_loop(request):
     """Create a new event loop for the test session."""
-    # ... (same as before)
     loop = asyncio.get_event_loop_policy().new_event_loop()
     yield loop
     loop.close()
@@ -22,8 +21,8 @@ def event_loop(request):
 
 @pytest_asyncio.fixture(scope="function")
 async def redis_client_fixture():
+    """Fixture for Redis client used in tests."""
     # settings from config.py for the test Redis client
-    # This ensures tests run against the same DB the app would use by default
     redis_url_for_tests = settings.get_redis_url()  # Uses configured host, port, db, password
 
     client = redis_async.from_url(redis_url_for_tests, decode_responses=True)
@@ -35,15 +34,13 @@ async def redis_client_fixture():
     await client.aclose()  # Use aclose for async client
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="session", autouse=True)
 def test_app_client():
     """Create a TestClient for the FastAPI app."""
     # TestClient will use the app instance which internally uses the configured settings
     with TestClient(app) as client:
         yield client
 
-
-# ... (online_device_fixture, offline_device_fixture remain the same logic) ...
 @pytest_asyncio.fixture(scope="function")
 async def online_device_fixture(redis_client_fixture: redis_async.Redis):
     """Fixture for an online device."""

@@ -30,6 +30,7 @@ class Settings(BaseSettings):
                                      description="Comma-separated list of cluster nodes")
 
     def get_redis_url(self) -> str:
+        """Construct the Redis URL based on the settings"""
         if not self.REDIS_CLUSTER_ENABLED:
             auth_part = f":{self.REDIS_PASSWORD}@" if self.REDIS_PASSWORD else ""
             protocol = "rediss" if self.REDIS_SSL else "redis"

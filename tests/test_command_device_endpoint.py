@@ -32,7 +32,6 @@ async def test_send_command_to_online_device(test_app_client, online_device_fixt
     assert stored_command["parameters"] == command_payload_dict["parameters"]
 
 
-
 @pytest.mark.asyncio
 async def test_send_command_to_device_after_turning_online(
         test_app_client,

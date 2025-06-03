@@ -47,7 +47,7 @@ def test_benchmark_get_all_devices(benchmark, test_app_client):
 async def test_benchmark_get_ten_devices(benchmark, test_app_client, redis_client_fixture):
     """Benchmark retrieving 10 devices."""
     # Setup 10 devices in Redis
-    device_ids = [] # You collect IDs for potential explicit cleanup
+    device_ids = []  # You collect IDs for potential explicit cleanup
     num_devices_to_create = 10
 
     for i in range(num_devices_to_create):
@@ -63,7 +63,7 @@ async def test_benchmark_get_ten_devices(benchmark, test_app_client, redis_clien
         }
         # Store device in Redis - with await
         await redis_client_fixture.hset(f"device:{device_id}", mapping=device_data_for_redis)
-        device_ids.append(device_id) # Collect for explicit cleanup, if desired
+        device_ids.append(device_id)  # Collect for explicit cleanup, if desired
 
     # The benchmark() fixture runs the target_api_call multiple times.
     # The setup above is performed once before these benchmark runs.

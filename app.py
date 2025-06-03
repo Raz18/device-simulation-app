@@ -18,7 +18,6 @@ from utils.redis_helper import get_device_data_from_redis
 settings: Settings = get_app_settings()
 
 # --- Logging Setup ---
-
 logging.basicConfig(level=settings.LOG_LEVEL.upper())
 logger = logging.getLogger(__name__)
 
@@ -102,7 +101,7 @@ async def get_redis_connection() -> redis.Redis:
         # The client will borrow a connection from the pool.
         r_client = redis.Redis(connection_pool=redis_connection_pool)
         # Optionally, ping to ensure connection health, though pool should manage this.
-        # await r_client.ping() # Can add overhead; usually not needed per request with a healthy pool.
+
         yield r_client
     except redis_exceptions.ConnectionError as e:
         logger.error(f"Failed to get Redis connection from pool: {e}")

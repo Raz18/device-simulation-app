@@ -1,7 +1,7 @@
 import os
 from typing import Optional
 from pydantic import Field
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 from functools import lru_cache
 
 
@@ -37,10 +37,13 @@ class Settings(BaseSettings):
         else:
             return None
 
-    class Config:
-        env_prefix = "APP_"
-        env_file = ".env"
-        case_sensitive = True
+    model_config = SettingsConfigDict(
+        env_prefix="APP_",  # Environment variable prefix
+        env_file=".env",  # Load from .env file
+        env_file_encoding='utf-8',
+        case_sensitive=True,  # For environment variable names (usually False is more common unless needed)
+        extra='ignore'  # Ignore extra fields from env or data
+    )
 
 
 @lru_cache()

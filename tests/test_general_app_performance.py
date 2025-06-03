@@ -53,6 +53,6 @@ async def test_large_database_load(redis_client_fixture, test_app_client):
 
     response = test_app_client.get("/devices")
     assert response.status_code == status.HTTP_200_OK
-    print(f"Number of devices returned: {len(response.json())}")
+    #print(f"Number of devices returned: {len(response.json())}")
     # Check if we received all 100 devices
     assert len(response.json()) == 100

@@ -27,7 +27,7 @@ async def test_send_command_to_online_device(test_app_client, online_device_fixt
     assert len(command_history_json) == 1
 
     stored_command = json.loads(command_history_json[0])
-    print(stored_command)  # Debug print to see the stored command structure
+    #print(stored_command)  # Debug print to see the stored command structure
     assert stored_command["action"] == command_payload_dict["action"]
     assert stored_command["parameters"] == command_payload_dict["parameters"]
 

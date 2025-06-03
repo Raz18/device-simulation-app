@@ -33,9 +33,6 @@ def test_openapi_schema_is_valid(test_app_client):
     assert response.status_code == status.HTTP_200_OK
 
     schema = response.json()
-    for key in schema:
-        print(f"{key}: {schema[key]}")  # Print schema keys and values for debugging
-
     # Validate basic structure
     assert "openapi" in schema
     assert "paths" in schema
